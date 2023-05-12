@@ -1,0 +1,28 @@
+﻿<Window x:Class="ZdravoCorp.Presentation.DoctorWindow.Appointments.DoctorAddAppointmentForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZdravoCorp.Presentation.DoctorWindow.Appointments"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+        mc:Ignorable="d"
+        Title="DoctorAddAppointmentForm" Height="391" Width="310" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" >
+    <Grid>
+        <Label x:Name="DateLabel" Content="Date:" Margin="30,31,0,0" Height="30" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="83"/>
+        <DatePicker x:Name="datePicker" SelectedDate="{x:Static sys:DateTime.Now}" Margin="0,33,36,0" Height="30" Width="130" FontSize="16" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Label x:Name="PatientLabel" Content="Patient:" HorizontalAlignment="Left" Margin="30,214,0,0" VerticalAlignment="Top" Width="108" Height="30" FontSize="16"/>
+        <ComboBox x:Name="PatientPickerCombobox" Margin="0,218,36,0" Width="130" Height="30" FontSize="16" SelectedIndex="0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Button x:Name="addButton" Content="Add " HorizontalAlignment="Left" Margin="30,0,0,10" Width="110" FontSize="18" Background="#FF4FB53A" Foreground="White" Click="addButton_Click" Cursor="Hand" VerticalAlignment="Bottom" Height="43"/>
+        <Button x:Name="cancelButton" Content="Cancel " HorizontalAlignment="Left" Margin="165,0,0,10" VerticalAlignment="Bottom" Width="110" Height="43" FontSize="18" Background="#FFEA5454" Foreground="White" Click="cancelButton_Click" Cursor="Hand"/>
+        <Label x:Name="startTimeLabel" Content="Start time:" HorizontalAlignment="Left" Margin="30,126,0,0" VerticalAlignment="Top" Width="83" Height="30" FontSize="16"/>
+        <Label x:Name="endTimeLabel" Content="End time:" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Width="83" Height="30" FontSize="16"/>
+        <Label x:Name="typeLabel" Content="Type:" HorizontalAlignment="Left" Margin="30,76,0,0" VerticalAlignment="Top" Width="83" Height="30" FontSize="16"/>
+        <ComboBox x:Name="typeCombobox" Margin="0,80,36,0" Width="130" SelectionChanged="typeCombobox_SelectionChanged" Height="30" FontSize="16" SelectedIndex="0" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <ComboBoxItem Content="Examination"/>
+            <ComboBoxItem Content="Operation"/>
+        </ComboBox>
+        <TextBox x:Name="startTimeTextbox" Margin="0,126,36,0" TextWrapping="Wrap" Text="08:00" Width="130" Height="30" VerticalContentAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <TextBox x:Name="endTimeTextbox" Margin="145,0,0,0" TextWrapping="Wrap" Text="09:00" Width="130" Height="30" VerticalContentAlignment="Center" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+    </Grid>
+</Window>

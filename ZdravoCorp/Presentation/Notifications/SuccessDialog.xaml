@@ -1,0 +1,15 @@
+﻿<Window x:Class="ZdravoCorp.Presentation.Notifications.SuccessDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZdravoCorp.Presentation.Notifications"
+        mc:Ignorable="d"
+        Title="Successful operation" Height="190" Width="340" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Button x:Name="okayBtn" Content="Okay" Margin="0,116,0,0" FontSize="18" Height="40" Width="80" RenderTransformOrigin="0.52,-0.267" Click="okayBtn_Click" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="30" RenderTransformOrigin="1.679,0.94" Source="/Presentation/Notifications/check.png"/>
+        <TextBlock x:Name="messageTextBlock" HorizontalAlignment="Center" Margin="0,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.095,0.231" Width="216" Height="94"/>
+
+    </Grid>
+</Window>

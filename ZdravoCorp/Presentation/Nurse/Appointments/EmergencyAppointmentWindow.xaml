@@ -1,0 +1,46 @@
+﻿<Window x:Class="ZdravoCorp.Presentation.Nurse.Appointments.EmergencyAppointmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZdravoCorp.Presentation.Nurse"
+        xmlns:users="clr-namespace:ZdravoCorp.Domain.Users"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+        mc:Ignorable="d"
+        Title="EmergencyAppointmentWindow" Height="506" Width="674" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="DoctorSpecialization" MethodName="GetValues"
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="users:DoctorSpecialization" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid Margin="0,0,10,13">
+        <Label x:Name="loggedUsernameLabel" Content="USERNAME" HorizontalAlignment="Left" Margin="106,405,0,0" VerticalAlignment="Top" FontSize="14" Width="135"/>
+        <Label x:Name="loggedLabel" Content="Logged in:" HorizontalAlignment="Left" Margin="16,405,0,0" VerticalAlignment="Top" FontSize="14" Width="84"/>
+        <Button x:Name="logOutBtn" Content="Log out" HorizontalAlignment="Left" Height="32" Margin="542,398,0,0" VerticalAlignment="Top" Width="106" FontSize="14" Background="#FFEA5454" Foreground="White" FontWeight="Bold" BorderBrush="#FFF96363" Click="LogOutBtn_Click"/>
+        <DataGrid x:Name="patientDataGrid" ColumnWidth="*"  CanUserAddRows="False" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="239" Margin="49,131,0,0" Width="294" RenderTransformOrigin="0.5,0.5">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+            <DataGrid.CurrentCell>
+                <DataGridCellInfo/>
+            </DataGrid.CurrentCell>
+        </DataGrid>
+
+        <Button x:Name="backBtn" Content="Back" HorizontalAlignment="Left" Height="32" Margin="542,21,0,0" VerticalAlignment="Top" Width="106" FontSize="14" Background="#FFEA5454" Foreground="White" FontWeight="Bold" BorderBrush="#FFF96363" Click="BackBtn_Click" />
+        <Button x:Name="emergencyExaminationBtn" Content="Emergency Examination" HorizontalAlignment="Left" Height="32" Margin="395,282,0,0" VerticalAlignment="Top" Width="232" FontSize="14" Background="#FF3671D0" Foreground="White" FontWeight="Bold" Click="EmergencyExaminationBtn_Click"  />
+        <Label Content="Patients: " HorizontalAlignment="Left" Margin="49,92,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="specializationComboBox" ItemsSource="{Binding Source={StaticResource DoctorSpecialization}}" SelectedItem="{x:Static users:DoctorSpecialization.Physician}" HorizontalAlignment="Left" Margin="395,133,0,0" VerticalAlignment="Top" Width="232" RenderTransformOrigin="0.497,0.531"/>
+        <Label Content="Specialization: " HorizontalAlignment="Left" Margin="395,92,0,0" VerticalAlignment="Top" Width="110"/>
+        <Button x:Name="emergencyOperationBtn" Content="Emergency Operation" HorizontalAlignment="Left" Height="32" Margin="395,338,0,0" VerticalAlignment="Top" Width="232" FontSize="14" Background="#FF3671D0" Foreground="White" FontWeight="Bold" Click="EmergencyOperationBtn_Click"  />
+
+    </Grid>
+
+</Window>

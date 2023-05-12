@@ -1,0 +1,110 @@
+﻿<Window x:Class="ZdravoCorp.Presentation.ManagerWindow.ManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZdravoCorp.Presentation.ManagerWindow"
+        xmlns:equipment="clr-namespace:ZdravoCorp.Domain.Equipment"
+        xmlns:room="clr-namespace:ZdravoCorp.Domain.Room"
+        xmlns:orders="clr-namespace:ZdravoCorp.Domain.Orders"
+        mc:Ignorable="d"
+        Title="ManagerWindow" Height="500" Width="900" WindowStartupLocation="CenterScreen" Closed="Window_Closed">
+    <Grid Margin="0,0,0,-53">
+
+        <TabControl Margin="0,0,0,49">
+            <TabItem x:Name="InventoryOverviewTab" Header="Inventory Overview">
+                <Grid Background="#FFE5E5E5" Height="393" VerticalAlignment="Top">
+                    <DataGrid x:Name="InventoryDataGrid" HorizontalAlignment="Left" Height="288" Margin="48,61,0,0" VerticalAlignment="Top" Width="806"  CanUserAddRows="False" Loaded="InventoryDataGrid_Loaded" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Equipment Name" Binding="{Binding (equipment:InventoryItem.Equipment).Name}" />
+                            <DataGridTextColumn Header="Equipment Type" Binding="{Binding (equipment:InventoryItem.Equipment).Type}" />
+                            <DataGridTextColumn Header="Dynamic" Binding="{Binding (equipment:InventoryItem.Equipment).IsDynamic}" />
+                            <DataGridTextColumn Header="Room Name" Binding="{Binding (equipment:InventoryItem.Room).Name}" />
+                            <DataGridTextColumn Header="Room Type" Binding="{Binding (equipment:InventoryItem.Room).Type}" />
+                            <DataGridTextColumn Header="Quantity" Binding="{Binding (equipment:InventoryItem.Quantity)}" />
+                        </DataGrid.Columns>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Quantity}" Value="0">
+                                        <Setter Property="Background" Value="Red" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Quantity}" Value="{x:Null}">
+                                        <Setter Property="Background" Value="Red" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+                    </DataGrid>
+                    <Button x:Name="FilterByRoomTypeButton" Content="Filter By Room Type" HorizontalAlignment="Left" Height="34" Margin="49,22,0,0" VerticalAlignment="Top" Width="127" Click="FilterByRoomTypeButton_Click"/>
+                    <Button x:Name="FilterByEquipmentTypeButton" Content="Filter By Equipment Type" HorizontalAlignment="Left" Margin="181,22,0,0" VerticalAlignment="Top" Height="34" Width="138" Click="FilterByEquipmentTypeButton_Click"/>
+                    <Button x:Name="FilterByQuantityButton" Content="Filter By Quantity" HorizontalAlignment="Left" Margin="324,23,0,0" VerticalAlignment="Top" Height="33" Width="142" IsCancel="True" Click="FilterByQuantityButton_Click"/>
+                    <Button x:Name="FilterNotInStorageButton" Content="Filter Not In Storage" HorizontalAlignment="Left" Height="33" Margin="470,23,0,0" VerticalAlignment="Top" Width="137" Click="FilterNotInStorageButton_Click"/>
+                    <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Margin="618,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" Height="33" TextChanged="SearchBox_TextChanged"/>
+                    <Button x:Name="ResetFilterButton" Content="Reset Filters" HorizontalAlignment="Left" Height="29" Margin="740,25,0,0" VerticalAlignment="Top" Width="114" Background="#FFDA2525" Foreground="#FFFFF8F8" Click="ResetFilterButton_Click"/>
+                    <Button x:Name="TransferItemButton" Content="Transfer Item" HorizontalAlignment="Left" Height="39" Margin="49,354,0,0" VerticalAlignment="Top" Width="179" Click="TransferItemButton_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="OrdersTab" Header="Orders">
+                <TabControl Height="400" VerticalAlignment="Top">
+                    <TabItem x:Name="MissingInventoryOverviewTab" Header="Missing Inventory">
+                        <Grid Background="#FFE5E5E5" Height="350">
+                            <Grid HorizontalAlignment="Left" Height="350" Margin="-3,2,0,0" VerticalAlignment="Top" Width="897"/>
+
+                            <DataGrid x:Name="MissingInventoryDataGrid" HorizontalAlignment="Left" Height="270" VerticalAlignment="Top" Width="768" AutoGenerateColumns="False" Loaded="MissingInventoryDataGrid_Loaded" IsReadOnly="True" Margin="63,76,0,0" EnableRowVirtualization="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Equipment Name" Binding="{Binding (equipment:InventoryItem.Equipment).Name}" />
+                                    <DataGridTextColumn Header="Equipment Type" Binding="{Binding (equipment:InventoryItem.Equipment).Type}" />
+                                    <DataGridTextColumn Header="Dynamic" Binding="{Binding (equipment:InventoryItem.Equipment).IsDynamic}" />
+                                    <DataGridTextColumn Header="Room Name" Binding="{Binding (equipment:InventoryItem.Room).Name}" />
+                                    <DataGridTextColumn Header="Room Type" Binding="{Binding (equipment:InventoryItem.Room).Type}" />
+                                    <DataGridTextColumn Header="Quantity" Binding="{Binding (equipment:InventoryItem.Quantity)}" />
+                                </DataGrid.Columns>
+                                <DataGrid.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Quantity}" Value="0">
+                                                <Setter Property="Background" Value="Red" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Quantity}" Value="{x:Null}">
+                                                <Setter Property="Background" Value="Red" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.CellStyle>
+                            </DataGrid>
+                            <Button x:Name="OrderMissingItemsButton" Content="Order Item" HorizontalAlignment="Left" Height="33" Margin="51,25,0,0" VerticalAlignment="Top" Width="143" Click="OrderMissingItemsButton_Click"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem x:Name="OrderOverviewTab" Header="Orders">
+                        <Grid Background="#FFE5E5E5" Height="350">
+                            <Grid HorizontalAlignment="Left" Height="350" Margin="-3,2,0,0" VerticalAlignment="Top" Width="897">
+                                <Button x:Name="RefreshOrdersButton" Content="Refresh Orders" HorizontalAlignment="Left" Margin="69,27,0,292" Width="131" Click="RefreshOrdersButton_Click"/>
+                            </Grid>
+                            <DataGrid x:Name="OrdersDataGrid" HorizontalAlignment="Left" Height="270" VerticalAlignment="Top" Width="768" d:ItemsSource="{d:SampleData ItemCount=5}" Loaded="OrdersDataGrid_Loaded" AutoGenerateColumns="False" IsReadOnly="True" Margin="63,76,0,0">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Order Id" Binding="{Binding (orders:OrderItem.Id)}" />
+                                    <DataGridTextColumn Header="Equipment Name" Binding="{Binding (orders:OrderItem.InventoryItem).Equipment.Name}" />
+                                    <DataGridTextColumn Header="Equipment Type" Binding="{Binding (orders:OrderItem.InventoryItem).Equipment.Type}" />
+                                    <DataGridTextColumn Header="Dynamic" Binding="{Binding (orders:OrderItem.InventoryItem).Equipment.IsDynamic}" />
+                                    <DataGridTextColumn Header="Room Name" Binding="{Binding (orders:OrderItem.InventoryItem).Room.Name}" />
+                                    <DataGridTextColumn Header="Room Type" Binding="{Binding (orders:OrderItem.InventoryItem).Room.Type}" />
+                                    <DataGridTextColumn Header="Quantity" Binding="{Binding (orders:OrderItem.InventoryItem).Quantity}" />
+                                    <DataGridTextColumn Header="Time" Binding="{Binding (orders:OrderItem.Time)}" />
+                                    <DataGridTextColumn Header="Status" Binding="{Binding (orders:OrderItem.Status)}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+
+            </TabItem>
+            <TabItem x:Name="RoomsTab" Header="Rooms" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <Label x:Name="LoggedInLabel" Content="Logged in: " HorizontalAlignment="Left" Margin="20,418,0,0" VerticalAlignment="Top" Height="36" Width="208"/>
+        <Button x:Name="LogOutButton" Content="Log Out" HorizontalAlignment="Left" Height="26" Margin="741,418,0,0" VerticalAlignment="Top" Width="130" Background="#FFDD2626" Foreground="#FFFFFCFC" Click="LogOutButton_Click"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,21 @@
+﻿<Window x:Class="ZdravoCorp.Presentation.ManagerWindow.Inventory.TransferItemDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZdravoCorp.Presentation.ManagerWindow.Inventory"
+        mc:Ignorable="d"
+        Title="Enter Transfer Details" Height="350" Width="450" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TextBox x:Name="TransferQuantityTextBox" HorizontalAlignment="Left" Height="35" Margin="198,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" PreviewTextInput="PreviewNumberInput"/>
+        <Label Content="Enter the quantity for the transfer:" HorizontalAlignment="Left" Height="36" Margin="10,192,0,0" VerticalAlignment="Top" Width="205"/>
+        <Button x:Name="SubmitTransferButton" Content="Submit" HorizontalAlignment="Left" Height="30" Margin="236,229,0,0" VerticalAlignment="Top" Width="154" Click="SubmitMoveButton_Click"/>
+        <Label Content="Select the date of the transfer:" HorizontalAlignment="Left" Height="36" Margin="10,81,0,0" VerticalAlignment="Top" Width="190"/>
+        <DatePicker x:Name="TransferItemDatePicker" HorizontalAlignment="Left" Height="36" Margin="195,81,0,0" VerticalAlignment="Top" Width="195"/>
+        <Label Content="Select the destination room:" HorizontalAlignment="Left" Height="37" Margin="10,32,0,0" VerticalAlignment="Top" Width="185"/>
+        <ComboBox x:Name="RoomNameComboBox" HorizontalAlignment="Left" Height="32" Margin="200,32,0,0" VerticalAlignment="Top" Width="190"/>
+        <Label Content="Enter the time of the transfer" HorizontalAlignment="Left" Height="39" Margin="10,134,0,0" VerticalAlignment="Top" Width="178"/>
+        <TextBox x:Name="TransferTimeTextBox" HorizontalAlignment="Left" Margin="198,134,0,0" TextWrapping="Wrap" Text="12:00" VerticalAlignment="Top" Width="192" Height="33"/>
+
+    </Grid>
+</Window>
